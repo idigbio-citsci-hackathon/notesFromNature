@@ -10,5 +10,8 @@
     "zooniverse": "git://github.com/zooniverse/Zooniverse#6a95d98",
     "zootorial": "~0.3.6",
     "coffee-script": "~1.6.3"
+  },
+  "scripts": {
+    "start": "hem server"
   }
 }
