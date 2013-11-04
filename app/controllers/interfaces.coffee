@@ -1,58 +1,68 @@
+Controller = require 'zooniverse/controllers/base-controller'
 Archive = require 'models/Archive'
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
-class InterfaceController extends Spine.Controller
-  preferences: {}
+EolModule = require 'controllers/interfaces/modules/eol'
+ImagePresenter = require 'controllers/interfaces/modules/image-presenter'
+
+class Interface extends Controller
+  className: 'interface'
+  archive: null
   
   constructor: ->
     super
-    Spine.bind 'finishedTranscription', @saveClassification
-    Spine.bind 'skipTranscription', @skipClassification
+
+    # Spine.bind 'finishedTranscription', @saveClassification
+    # Spine.bind 'skipTranscription', @skipClassification
 
     Subject.on 'select', @nextSubject
 
-  render: (opts = null) =>
-    @html @template(opts)
+    # @eol = new EolModule({ attachPoint: @el }) if 'eol' in @modules
+    @imagePresenter = new ImagePresenter
+      attachPoint: @el
+
+    @el.appendTo 'body'
+    Subject.next()
+
+  nextSubject: (subject) =>
+    @imagePresenter.present Subject.current.location.standard
 
   startWorkflow: (@archive) =>
-    @render()
 
-    Subject.group = @archive.id
 
-    go = =>
-      window.GOD = new nfn.ui.view.GOD
-        model: new nfn.ui.model.GOD()
+    # go = =>
+    #   window.GOD = new nfn.ui.view.GOD
+    #     model: new nfn.ui.model.GOD()
 
-      transcriberModel = new nfn.ui.model[@widgetName]()
-      @transcriber = new nfn.ui.view[@widgetName]
-        model: transcriberModel
-        Spine: Spine
-        user: User.current
-        archive: @archive
+    #   transcriberModel = new nfn.ui.model[@widgetName]()
+    #   @transcriber = new nfn.ui.view[@widgetName]
+    #     model: transcriberModel
+    #     Spine: Spine
+    #     user: User.current
+    #     archive: @archive
 
-      $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
+    #   $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
-      Subject.next()
-      window.transcriber = @transcriber
+    #   Subject.next()
+    #   window.transcriber = @transcriber
 
-    @delay go, 200
+    # @delay go, 200
 
   saveClassification: (data) =>
     @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
 
     # Sigh
-    done = =>
-      unless User.current then return
-      badges = User.current.badges
-      userFetch = User.fetch()
+    # done = =>
+    #   unless User.current then return
+    #   badges = User.current.badges
+    #   userFetch = User.fetch()
 
-      userFetch.done =>
-        User.current.badges = badges
-        @archive.checkBadges()
+    #   userFetch.done =>
+    #     User.current.badges = badges
+    #     @archive.checkBadges()
       
     @classification.send done
-
     Subject.next()
 
   skipClassification: =>
@@ -60,4 +70,7 @@ class InterfaceController extends Spine.Controller
     @classification.send()
     Subject.next()
 
-module.exports = InterfaceController
+  cleanup: =>
+    @el.remove()
+
+module.exports = Interface

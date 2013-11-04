@@ -1,13 +1,13 @@
 ArchivesList = require 'controllers/archives/list'
 ArchivesItem = require 'controllers/archives/item'
-Transcriptions = require 'controllers/TranscriptionController'
+Transcribe = require 'controllers/transcribe'
 
 class ArchivesStack extends Spine.Stack
 
   controllers:
     archivesList: ArchivesList
     archivesItem: ArchivesItem
-    transcribe: Transcriptions
+    transcribe: Transcribe
 
   routes:
     '/archives': 'archivesList'
