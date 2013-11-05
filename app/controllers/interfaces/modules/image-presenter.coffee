@@ -2,6 +2,7 @@ Controller = require 'zooniverse/controllers/base-controller'
 
 class ImagePresenter extends Controller
   template: require 'views/widgets/image-presenter'
+  className: 'image-presenter'
 
   attachPoint: 'body'
   image: null
@@ -12,13 +13,13 @@ class ImagePresenter extends Controller
 
   constructor: ->
     super
-    @el.attr 'id', @id
 
+    @el.attr 'id', @id
     @el.appendTo @attachPoint
 
   present: (image) =>
-    img = new Img
-    img.onload = ->
+    img = new Image
+    img.onload = =>
       @imageContainer.append img
       @imageContainer.panzoom()
     img.src = image

@@ -30,6 +30,7 @@ class Transcribe extends Spine.Site
     # This is temporary. Probably.
     newInterface = ['calbug', 'sernec', 'macrofungi']
     if newInterface.indexOf @archive.slug() != -1
+      console.log 'generating new interface'
       @interface = new Interface
         definitions: definitions[newInterface]
         archive: @archive
@@ -39,11 +40,13 @@ class Transcribe extends Spine.Site
         if which is 8 and not (target.tagName is 'INPUT')
           preventDefault()
 
+    Subject.next()
+
   deactivate: =>
     super
     @interface?.cleanup()
     if @archive? then $('body').removeClass("transcribingScreen #{ @archive.slug() }")
-    
+
     # $('.transcriber').remove()
     # Subject.destroyAll()
     # Spine.unbind 'finishedTranscription'

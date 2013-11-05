@@ -13,62 +13,61 @@ class Interface extends Controller
   constructor: ->
     super
 
-    # Spine.bind 'finishedTranscription', @saveClassification
-    # Spine.bind 'skipTranscription', @skipClassification
-
     Subject.on 'select', @nextSubject
 
     # @eol = new EolModule({ attachPoint: @el }) if 'eol' in @modules
     @imagePresenter = new ImagePresenter
       attachPoint: @el
 
+    @el.toggleClass @archive.slug()
     @el.appendTo 'body'
-    Subject.next()
 
   nextSubject: (subject) =>
     @imagePresenter.present Subject.current.location.standard
 
-  startWorkflow: (@archive) =>
 
 
-    # go = =>
-    #   window.GOD = new nfn.ui.view.GOD
-    #     model: new nfn.ui.model.GOD()
+  # startWorkflow: (@archive) =>
 
-    #   transcriberModel = new nfn.ui.model[@widgetName]()
-    #   @transcriber = new nfn.ui.view[@widgetName]
-    #     model: transcriberModel
-    #     Spine: Spine
-    #     user: User.current
-    #     archive: @archive
 
-    #   $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
+  #   # go = =>
+  #   #   window.GOD = new nfn.ui.view.GOD
+  #   #     model: new nfn.ui.model.GOD()
 
-    #   Subject.next()
-    #   window.transcriber = @transcriber
+  #   #   transcriberModel = new nfn.ui.model[@widgetName]()
+  #   #   @transcriber = new nfn.ui.view[@widgetName]
+  #   #     model: transcriberModel
+  #   #     Spine: Spine
+  #   #     user: User.current
+  #   #     archive: @archive
 
-    # @delay go, 200
+  #   #   $(".btn.close").attr("href", "#/archives/#{@archive.slug()}")
 
-  saveClassification: (data) =>
-    @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
+  #   #   Subject.next()
+  #   #   window.transcriber = @transcriber
 
-    # Sigh
-    # done = =>
-    #   unless User.current then return
-    #   badges = User.current.badges
-    #   userFetch = User.fetch()
+  #   # @delay go, 200
 
-    #   userFetch.done =>
-    #     User.current.badges = badges
-    #     @archive.checkBadges()
+  # saveClassification: (data) =>
+  #   @classification.annotate({step: annotation.stepTitle, value: annotation.value}) for annotation in data.toJSON()
+
+  #   # Sigh
+  #   # done = =>
+  #   #   unless User.current then return
+  #   #   badges = User.current.badges
+  #   #   userFetch = User.fetch()
+
+  #   #   userFetch.done =>
+  #   #     User.current.badges = badges
+  #   #     @archive.checkBadges()
       
-    @classification.send done
-    Subject.next()
+  #   @classification.send done
+  #   Subject.next()
 
-  skipClassification: =>
-    @classification.annotate({skip: true})
-    @classification.send()
-    Subject.next()
+  # skipClassification: =>
+  #   @classification.annotate({skip: true})
+  #   @classification.send()
+  #   Subject.next()
 
   cleanup: =>
     @el.remove()

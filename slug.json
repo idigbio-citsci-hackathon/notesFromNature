@@ -2,7 +2,6 @@
   "dependencies": [
     "spine",
     "spine/lib/local",
-    "spine/lib/ajax",
     "spine/lib/route",
     "spine/lib/manager",
     "spine/lib/relation",
