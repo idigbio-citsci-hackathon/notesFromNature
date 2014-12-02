@@ -1,48 +1,60 @@
+<% { formatNumber } = require 'lib/utils' %>
+
 <div class="box-general detail" style='background-image:url("<%= @archive.metadata.location.headerImage %>")'>
   <section class="header-content">
     <h3><%= @archive.institute().name %></h3>
     <h1><%= @archive.name %></h1>
+    <% unless @archive.isComplete(): %>
     <div class="translucent-box">
       <div>
         <a class="button left" href="<%= @archive.transcriptionUrl() %>">START TRANSCRIBING</a>
-        <div class="percentage">
-          <span class="title"><%= @archive.progress() %>%</span>
-          <span class="subtitle done">DONE</span>
-        </div>
       </div>
+      <% end %>
     </div>
   </section>
 </div>
 
 <div class="box-general divided-green">
+
+  <div class="col1">
+    
+    <ul class="status-list">
+      <% if @archive.metadata.start_date and @archive.metadata.end_date: %>
+        <li>
+          <span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %>
+        </li>
+      <% end %>
+      <% if @archive.metadata.regions?.length: %>
+        <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
+      <% end %>
+
+      <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
+      <li class="api-stat-list">
+        <div class="progress-stats">
+          <span class="text">PROGRESS</span>
+          <span class="api-stat">Total Images: <%- formatNumber @archive.stats.total %></span>
+          <span class="api-stat" >Active Images: <%- formatNumber @archive.stats.active %></span>
+          <span class="api-stat">Complete Images: <%- formatNumber @archive.stats.complete %></span>
+          <span class="api-stat"><%- formatNumber @archive.transcription_count() %> transcriptions completed</span>
+        </div>
+      </li>
+      <li id="progress-bar-li">
+        <div class="progress-bar">
+          <div class="bar" style="width:<%= @archive.progress_strict() %>%"></div>
+          <span class="progress"><%= @archive.progress_strict() %>%</span>
+        </div>
+      </li> 
+      <li class="start-transcribing"> 
+        <%# see dynamic logic on ArchiveItem.render() when archive is complete %>
+        <a id="a-btn-start-transcribing" href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
+      </li>
+      <li class="notes_on_numbers">
+        <span class="notes_on_numbers"> <a href="http://blog.notesfromnature.org/2014/02/24/making-progress-clear-on-notes-from-nature/">Notes on our numbers. </a></span>
+      </li>
+    </ul>
+  </div>
   <div class="col2">
     <p><%- @archive.metadata.description %></p>
-  </div>
-  <div class="col1">
-    <div class="box-right">
-      <ul class="status-list">
-        <% if @archive.metadata.start_date and @archive.metadata.end_date: %>
-          <li><span class="text">TEMPORAL RANGE</span><%= @archive.metadata.start_date %> / <%= @archive.metadata.end_date %></li>
-        <% end %>
-
-        <% if @archive.metadata.regions: %>
-          <li><span class="text">GEOGRAPHIC CONTEXT</span> <%= @archive.metadata.regions.join(" | ") %></li>
-        <% end %>
-
-        <li><span class="text">TAXONOMIC COVERAGE</span><%= @archive.categories.join(" | ") %></li>
-
-        <li>
-          <span class="text">PROGRESS - <%- @archive.recordsComplete() %> / <%- @archive.total() %></span>
-
-          <div class="progress-bar">
-            <div class="bar" style="width:<%= @archive.progress() %>%"></div>
-            <span class="progress"><%= @archive.progress() %>%</span>
-          </div>
-        </li>
-
-      </ul>
-      <a href="<%= @archive.transcriptionUrl() %>" class="button nocolor">START TRANSCRIBING</a>
-    </div>
   </div>
 </div>
 
@@ -76,10 +88,13 @@
       <li><span class="text">AVG. TIME PER RECORD</span><%= @archive.metadata.average_length || "3 mins" %></li>
       <li><span class="text">AVG. DIFFICULTY</span><%= @archive.metadata.difficulty %></li>
     </ul>
-    <span class="mar-button">
-      <a href="<%= @archive.transcriptionUrl() %>" class="button next">
-        <span>TRY WITH ONE RECORD</span>
-      </a>
-    </span>
+
+    <% unless @archive.isComplete(): %>
+      <span class="mar-button">
+        <a href="<%= @archive.transcriptionUrl() %>" class="button next">
+          <span>TRY WITH ONE RECORD</span>
+        </a>
+      </span>
+    <% end %>
   </div>
 </div>

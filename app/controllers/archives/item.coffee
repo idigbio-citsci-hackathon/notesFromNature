@@ -2,6 +2,7 @@ Project = require 'zooniverse/models/project'
 
 Archive = require 'models/Archive'
 Badges = require 'models/Badge'
+$ = window.jQuery
 
 class ArchivesItem extends Spine.Site
   className: 'ArchivesItem'
@@ -34,7 +35,21 @@ class ArchivesItem extends Spine.Site
         archive: @currentArchive
         user_count: @formatNumber Project.current?.user_count || 0
         badges: Badges.badgesForProject(@currentArchive.slug())
-    else
+      if @currentArchive.isComplete()
+        @disableStartTranscribing()
+    else  
       @html require('/views/archives/archiveNotFound')()
+
+  disableStartTranscribing: =>
+    btnStartTranscribing = $("#a-btn-start-transcribing")
+    btnStartTranscribing.addClass("disabled")
+    btnStartTranscribing.attr("disabled", true) 
+    btnStartTranscribing.attr("href", "/")
+    btnStartTranscribing.text("No active images") 
+    btnStartTranscribing.on( "click", (e) ->
+      e.preventDefault()
+      e.stopImmediatePropagation  
+    )
+
 
 module.exports = ArchivesItem

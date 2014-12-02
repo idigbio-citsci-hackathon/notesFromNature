@@ -1,13 +1,17 @@
 Api = require 'zooniverse/lib/api'
-badgeDefinitions = require 'lib/BadgeDefinitions'
+badgeDefinitions = require 'lib/badge-definitions'
 
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
+
+{ formatNumber } = require 'lib/utils'
 
 class Archive extends Spine.Model
   @configure 'Archive', 'group_id', 'classification_count', 'name', 'metadata', 'complete', 'stats', 'categories'
   @belongsTo 'institute', 'models/Institute'
   @hasMany 'badges', 'models/Badge'
+  COMPLETION_FACTOR: 4
+  classification_count: 0
 
   @findBySlug: (slug) ->
     result = @select (archive) ->
@@ -20,12 +24,10 @@ class Archive extends Spine.Model
         archive.categories.indexOf(params.type) != -1 or archive.categories.indexOf(_.str.capitalize(params.type)) != -1
     else
       @all()
-
-  classification_count: 0
-    
+  
   addBadges: =>
     for badge in badgeDefinitions
-      if badge.collection is @slug()
+      if badge.collection is @slug() or 'collection' not of badge
         @badges().create badge
 
   checkBadges: =>
@@ -41,21 +43,22 @@ class Archive extends Spine.Model
   slug: ->
     (@name.replace /\s/g, "_").toLowerCase()
 
-  complete: =>
-    @progress() is 100
-  
-  progress: =>
-    if @stats?.total > 0 then Math.min(100, (parseInt((@classification_count / @stats.total) * 10))) else 0
+  transcriptions_needed: =>
+    (@stats.total - @stats.paused) * @COMPLETION_FACTOR
+
+  # progress_strict calculates progress using raw complete and total values from the API
+  progress_strict: =>
+    unless @stats? then return 0
+    Math.floor(@stats.complete / (@stats.total) * 100)
 
   recordsComplete: =>
-    @formatNumber Math.floor(@classification_count / 10)
+    formatNumber @stats.complete
 
-  total: =>
-    @formatNumber @stats.total
+  isComplete: =>
+    unless @stats? then return 0
+    @stats.complete >= (@stats.total - @stats.paused)
 
-  # Private
-  formatNumber: (n) ->
-    return n unless n
-    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
+  transcription_count: =>
+    @metadata.rows_transcribed || @classification_count || 0
 
 module.exports = Archive

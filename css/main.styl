@@ -9,6 +9,11 @@
 .ArchivesIndexController
   margin-bottom: 40px
 
+.InstituteShowController
+
+  .logo
+    max-height: 3em
+
 *[lang='de'], *[lang='pl']
   display : none
   
@@ -113,12 +118,17 @@ h3 span.black {
   color: #666666;
 }
 
-span.subtitle
+.subtitle
   color: #666
 
 .translucent-box 
   background: rgba(#000, 0.7)
   float: left
+
+  .complete_notice
+    text-align: right;
+    color: rgb(169, 169, 169);
+    font-size: 75%;
 
   img
     float: left
@@ -130,12 +140,6 @@ span.subtitle
       font-family: "Open Sans", sans-serif
       font-size: 21px
       font-weight: 600
-
-    &.subtitle
-      font-family: "Helvetica", sans-serif
-      font-size: 17px
-      font-weight: normal
-      padding-top: 0px
 
   .percentage
     margin-top: 10px
@@ -205,7 +209,7 @@ span.subtitle
     width: 100% !important
 
   hgroup 
-    margin: 38px 0 120px 0
+    margin: 70px 0 110px 0
 
   h2, h3, h4
     color: #fff
@@ -216,7 +220,7 @@ span.subtitle
     text-shadow: 1px 1px 8px #000
     font-weight: 800
     letter-spacing: -2px
-    margin: 0
+    margin: 10px 0
 
   h3
     font-size: 25px
@@ -229,8 +233,11 @@ span.subtitle
     a
       border-bottom: 1px dashed #fff
       color: #fff
+      transition: all 0.3s ease-in-out
 
       &:hover
+        padding: 0 0 2px 0
+        text-decoration: none
         text-shadow: 1px 1px 15px #000
 
   h4
@@ -270,13 +277,7 @@ span.numbers {
   color: #FFF;
   font-size: 41px;
   font-weight: 600;
-}
-span.subtitle {
-  display: block;
-  font-family: helvetica;
-  font-size: 15px;
-  font-weight: normal;
-  padding-top: 10px;
+  line-height: 1em;
 }
 
 h2 span.subtitle {
@@ -295,10 +296,6 @@ h2.title span.subtitle a {
 }
 h2 span.subtitle {
   padding-top: 12px;
-}
-
-h3 span.subtitle {
-  font-size: 13px;
 }
 
 figcaption {
@@ -489,10 +486,11 @@ a.badge {
     z-index: 100
 
   &.home
-    background: #fff url(images/bg-home.jpg) no-repeat center
+    background: #fff url(images/splashes/home.jpg) no-repeat center
+    background-size: cover
     border: 5px solid rgba(0, 0, 0, 0.83)
     height: 500px
-    margin-bottom: 41px
+    margin-bottom: 21px
     padding: 0
     text-align: center
     width: 950px
@@ -513,17 +511,20 @@ a.badge {
   margin-right: -10px;
 }
 
+.box-general.divided-green {
+  background: transparent url(images/bg-green-repeat.jpg) repeat-y
+}
+
+.box-general.divided-green .col2{
+  width: 511px; 
+}
+
 .box-general.divided-green .col1 {
   height: 320px;
-  position: absolute;
-  width: 330px;
-  top: -10px;
-  padding: 33px 0 60px 0;
-  right: -30px;
-  border-left: 1px solid #333;
-  border-bottom: 1px solid #333;
-  background: url(images/bg-green.jpg) no-repeat bottom;
-  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+  float:right;
+  width: 290px;
+  padding: 0 0 60px 20px;
+  margin: 0 0 0 60px;
 }
 
 .box-general.laptop {
@@ -621,7 +622,7 @@ hr.absolute {
 
 .status-list li {
   color: #FFF;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: 100;
 }
 .status-list li.logos span.text {
@@ -685,8 +686,8 @@ hr {
 }
 .counters .box-black-numbers {
   float: left;
-  padding: 35px 0 25px 0;
-  width: 239px;
+  padding: 30px 0;
+  width: 319px;
   background: #000;
   border-right: 1px solid rgba(42, 42, 42, 0.7);
   text-align: center;
@@ -921,7 +922,7 @@ li.img-graphic2 {
 }
 .time-life li:nth-child(2n+1) div {
   left: 45px;
-  width: 240px;
+  width: 190px;
   position: relative;
   text-align: left;
 }
@@ -990,10 +991,6 @@ li.img-graphic2 {
     position: relative
     width: 320px
 
-.archive-list h3 span.subtitle {
-  font-size: 15px;
-}
-
 .archive-list .emptyArchive{
   border-box()
   border-right: 1px solid #333333
@@ -1024,7 +1021,7 @@ li.img-graphic2 {
   height: 100%;
   left: 0;
   position: absolute;
-  top: 160px;
+  top: 185px;
   width: 100%;
   z-index: 6;
 }
@@ -1051,26 +1048,23 @@ li.img-graphic2 {
   color: #83C046;
   font-size: 13px;
 }
-.archive-list h3 {
-  background-color: #000;
-  position: absolute;
-  bottom: 0;
-  width: 245px;
-  margin: 0;
-  padding: 22px 40px;
-  z-index: 10;
-  color: #83C046;
-}
 
-.archive-list h3 span a{
-  color:#666
-}
-.archive-list h3 a {
-  color: #83C046;
-}
-.archive-list h3 a:hover {
-  color: #FFF;
-}
+.archive-list .archive-details 
+  background: linear-gradient(rgba(black, 0.7), rgba(black, 1))
+  bottom: 0
+  color: #777
+  margin: 0
+  padding: 22px 40px
+  position: absolute
+  width: 245px
+  z-index: 10
+
+  .archive-link
+    color: #83c046
+    font-size: 26px
+
+    &:hover
+      color: white
 
 .archive-list li.selected h3 a {
   color: #FFF;
@@ -1101,8 +1095,13 @@ a.button.nocolor {
   background: #FFF;
   color: #557F2C;
   padding: 14px 50px;
+  text-align: center;
   text-shadow: 0px 0px;
+  display:block;
+  box-sizing: border-box;
+  width: 100%;
 }
+
 a.button.nocolor:hover {
   background: linear-gradient(top, #dadada 0%, #ffffff 100%);
   text-shadow: 0px 1px #FFF;
@@ -1110,6 +1109,13 @@ a.button.nocolor:hover {
 a.button.nocolor:active {
   background: linear-gradient(top, #ffffff 0%, #dadada 100%);
 }
+
+a.button.nocolor.disabled {
+  opacity: 0.6;
+  background: #537c2a;
+  color: #2C2C2C;
+}
+
 a.button.next {
   background: url(images/icons.png) no-repeat 2px -20px;
   box-shadow: 0 0;
@@ -1192,11 +1198,53 @@ span.switch.selected {
   background-position: 32px -553px;
 }
 
+.progress-stats {
+  padding-bottom: 0px;
+}
 
+.progress-bar-ratio {
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+
+#progress-bar-li {
+  background: rgba(black, 0.1)
+  border-radius: 3px
+  padding: 18px 8px 2px 8px
+  margin: 5px 0
+}
+
+.api-stat {
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.progress-bar-label {
+  padding-top: 6px;
+  margin-bottom: 3px;
+  text-align: right;
+}
+
+.status-list .api-stat-list {
+  margin-bottom: 5px;
+}
+
+.status-list .start-transcribing {
+   margin-bottom: 5px;
+}
+.status-list li.notes_on_numbers {
+   margin: 10px 0 0 10px;
+}
+
+.status-list .notes_on_numbers a {
+  color: #FFF
+}
 
 .progress-bar {
   position: relative;
-  width: 204px;
+  margin-bottom: 15px;
+  width: 224px;
   height: 3px;
   background: rgba(0, 0, 0, 0.2);
 }
@@ -1215,7 +1263,7 @@ span.switch.selected {
 }
 .progress-bar span.progress {
   display: block;
-  left: 215px;
+  left: 240px;
   position: absolute;
   top: -9px;
 }
@@ -1283,6 +1331,7 @@ h1.notlogged
   text-shadow: 1px 1px 0 #000
 
 
+<<<<<<< HEAD
 allmodal-template
       background: rgba(#000, 0.5)
     display: none
@@ -1292,3 +1341,7 @@ allmodal-template
     top: 0
     width: 100%
     z-index: 100000
+=======
+
+
+>>>>>>> 4396f36120dfd42565ef1b101cb1020829e0722c
