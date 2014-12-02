@@ -18,6 +18,9 @@
   &.sernac
     width: 100%
 
+    .photos img
+      max-width: 800px
+
 
 /* TOOLTIPS */
 .transcriber.birds, .transcriber.sernac {
@@ -157,7 +160,7 @@
     text-transform: uppercase;
   }
 
-  .description {
+  .description, .dittoDescription {
     padding: 4px 0 0 0;
     margin: 0 0 10px 0;
     font: normal 13px "Helvetica", Arial, sans-serif;
@@ -405,6 +408,9 @@
 }
 
 
+.transcriber.sernac .magnifier img
+  max-width: 2000px
+
 .transcriber.fungi
   
   .magnifier img
@@ -435,7 +441,7 @@
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.4)
   box-sizing: border-box
   display: none
-  height: 55px
+  height: 95px
   padding: 11px 11px 11px 10px
   position: absolute
   width: 710px
@@ -587,7 +593,7 @@
     .additional
       color: #0f0
     
-  .description
+  .description, .dittoDescription
     font: 12px/1.5em "Helvetica"
     margin-top: 11px
 
@@ -1100,6 +1106,22 @@
   -o-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
 }
+
+a.alert, .alert {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 6px;
+  border: 1px solid #000;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font: 11px "Open Sans";
+  line-height: 13px;
+  color: #fff;
+  background: #693;
+  text-decoration: none;
+  font-weight: 100;
+}
+
 
 a.btn, .btn {
   display: inline-block;

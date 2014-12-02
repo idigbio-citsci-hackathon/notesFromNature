@@ -248,6 +248,56 @@
       <option value="1882">1882</option>
       <option value="1881">1881</option>
       <option value="1880">1880</option>
+      <option value="1879">1879</option>
+      <option value="1878">1878</option>
+      <option value="1877">1877</option>
+      <option value="1876">1876</option>
+      <option value="1875">1875</option>
+      <option value="1874">1874</option>
+      <option value="1873">1873</option>
+      <option value="1872">1872</option>
+      <option value="1871">1871</option>
+      <option value="1870">1870</option>
+      <option value="1869">1869</option>
+      <option value="1868">1868</option>
+      <option value="1867">1867</option>
+      <option value="1866">1866</option>
+      <option value="1865">1865</option>
+      <option value="1864">1864</option>
+      <option value="1863">1863</option>
+      <option value="1862">1862</option>
+      <option value="1861">1861</option>
+      <option value="1860">1860</option>
+      <option value="1859">1859</option>
+      <option value="1858">1858</option>
+      <option value="1857">1857</option>
+      <option value="1856">1856</option>
+      <option value="1855">1855</option>
+      <option value="1854">1854</option>
+      <option value="1853">1853</option>
+      <option value="1852">1852</option>
+      <option value="1851">1851</option>
+      <option value="1850">1850</option>
+      <option value="1849">1849</option>
+      <option value="1848">1848</option>
+      <option value="1847">1847</option>
+      <option value="1846">1846</option>
+      <option value="1845">1845</option>
+      <option value="1844">1844</option>
+      <option value="1843">1843</option>
+      <option value="1842">1842</option>
+      <option value="1841">1841</option>
+      <option value="1840">1840</option>
+      <option value="1839">1839</option>
+      <option value="1838">1838</option>
+      <option value="1837">1837</option>
+      <option value="1836">1836</option>
+      <option value="1835">1835</option>
+      <option value="1834">1834</option>
+      <option value="1833">1833</option>
+      <option value="1832">1832</option>
+      <option value="1831">1831</option>
+      <option value="1830">1830</option>
      </select>
   </div>
 </script>
@@ -256,6 +306,7 @@
   <div class="state_field">
     <select name="state" class="state"> 
       <option value="placeholder">-- State --</option>
+      <option value="unknown">Unknown State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
@@ -444,8 +495,9 @@
   <div class="country_field">
     <select name="countries" class="countries">
       <option value="placeholder">-- Country --</option>
+      <option value="United States">United States</option>
       <option value="unknown">Unknown Country</option>
-      <option value="Afganistan">Afghanistan</option>
+      <option value="Afghanistan">Afghanistan</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
       <option value="American Samoa">American Samoa</option>
@@ -497,10 +549,10 @@
       <option value="Congo">Congo</option>
       <option value="Cook Islands">Cook Islands</option>
       <option value="Costa Rica">Costa Rica</option>
-      <option value="Cote DIvoire">Cote D'Ivoire</option>
+      <option value="Cote D'Ivoire">Cote D'Ivoire</option>
       <option value="Croatia">Croatia</option>
       <option value="Cuba">Cuba</option>
-      <option value="Curaco">Curacao</option>
+      <option value="Curacao">Curacao</option>
       <option value="Cyprus">Cyprus</option>
       <option value="Czech Republic">Czech Republic</option>
       <option value="Denmark">Denmark</option>
@@ -559,7 +611,7 @@
       <option value="Kenya">Kenya</option>
       <option value="Kiribati">Kiribati</option>
       <option value="Korea North">Korea North</option>
-      <option value="Korea Sout">Korea South</option>
+      <option value="Korea South">Korea South</option>
       <option value="Kuwait">Kuwait</option>
       <option value="Kyrgyzstan">Kyrgyzstan</option>
       <option value="Laos">Laos</option>
@@ -593,7 +645,7 @@
       <option value="Morocco">Morocco</option>
       <option value="Mozambique">Mozambique</option>
       <option value="Myanmar">Myanmar</option>
-      <option value="Nambia">Nambia</option>
+      <option value="Namibia">Namibia</option>
       <option value="Nauru">Nauru</option>
       <option value="Nepal">Nepal</option>
       <option value="Netherland Antilles">Netherland Antilles</option>
@@ -615,7 +667,7 @@
       <option value="Papua New Guinea">Papua New Guinea</option>
       <option value="Paraguay">Paraguay</option>
       <option value="Peru">Peru</option>
-      <option value="Phillipines">Philippines</option>
+      <option value="Philippines">Philippines</option>
       <option value="Pitcairn Island">Pitcairn Island</option>
       <option value="Poland">Poland</option>
       <option value="Portugal">Portugal</option>
@@ -674,10 +726,9 @@
       <option value="Tuvalu">Tuvalu</option>
       <option value="Uganda">Uganda</option>
       <option value="Ukraine">Ukraine</option>
-      <option value="United Arab Erimates">United Arab Emirates</option>
+      <option value="United Arab Emirates">United Arab Emirates</option>
       <option value="United Kingdom">United Kingdom</option>
-      <option value="United States">United States</option>
-      <option value="Uraguay">Uruguay</option>
+      <option value="Uruguay">Uruguay</option>
       <option value="Uzbekistan">Uzbekistan</option>
       <option value="Vanuatu">Vanuatu</option>
       <option value="Vatican City State">Vatican City State</option>
@@ -694,4 +745,3 @@
     </select>
   </div>
 </script>
-

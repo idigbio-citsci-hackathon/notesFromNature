@@ -42,6 +42,7 @@
 <script type="text/template" id="helper-template">
   <div class="title"></div>
   <div class="description"></div>
+  <div class="dittoDescription"></div>  
 </script>
 
 <script type="text/template" id="launcher-template">
@@ -58,7 +59,7 @@
 
 <script type="text/template" id="date-input-template">
   <div class="date_field month">
-    <select name="month" class="month">
+    <select name="month" class="month" data-title="">
       <option value="placeholder">-- Month --</option>
       <option value="00">Not Shown</option>
       <option value="01">01 - January</option>
@@ -257,6 +258,7 @@
   <div class="state_field">
     <select name="state" class="state"> 
       <option value="placeholder">-- State --</option>
+      <option value="unknown">Unknown State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
@@ -445,6 +447,7 @@
   <div class="country_field">
     <select name="countries" class="countries">
       <option value="placeholder">-- Country --</option>
+      <option value="United States">United States</option>
       <option value="unknown">Unknown Country</option>
       <option value="Afganistan">Afghanistan</option>
       <option value="Albania">Albania</option>
@@ -677,7 +680,6 @@
       <option value="Ukraine">Ukraine</option>
       <option value="United Arab Erimates">United Arab Emirates</option>
       <option value="United Kingdom">United Kingdom</option>
-      <option value="United States">United States</option>
       <option value="Uraguay">Uruguay</option>
       <option value="Uzbekistan">Uzbekistan</option>
       <option value="Vanuatu">Vanuatu</option>

@@ -16,14 +16,14 @@ Archives = require 'controllers/archives'
 AboutController = require 'controllers/AboutController'
 BadgesController = require 'controllers/BadgesController'
 FAQController = require 'controllers/FAQController'
-HomeController = require 'controllers/HomeController'
-InstituteShowController = require 'controllers/InstituteShowController'
+Home = require 'controllers/home'
 LoginController = require 'controllers/LoginController'
 Profile = require 'controllers/profile'
 
 Api = require 'zooniverse/lib/api'
 
 Project = require 'zooniverse/models/project'
+Project::groups = null
 Subject = require 'zooniverse/models/subject'
 User = require 'zooniverse/models/user'
 
@@ -42,14 +42,18 @@ new Api project: 'notes_from_nature'
 app = {}
 app.container = '#app'
 
+app.models = {}
+app.models.Archive = Archive
+app.models.Badge = Badge
+app.models.Institute = Institute
+
 app.header = new Header
 app.header.el.prependTo app.container
 
 app.stack = new Spine.Stack
   controllers:
-    home: HomeController
+    home: Home
     archives: Archives
-    instituteShow: InstituteShowController
     login: LoginController
     profile: Profile
     about: AboutController
@@ -59,7 +63,6 @@ app.stack = new Spine.Stack
     '/': 'home'
     '/archives': 'archives'
 
-    '/institutes/:id': 'instituteShow'
     '/badges/:id': 'badges'
 
     '/about': 'about'
